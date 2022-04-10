@@ -4,7 +4,7 @@
         <name>terry_trials</name>
     </assembly>
     <members>
-        <member name="T:Sandbox.TerryTrials">
+        <member name="T:TerryTrials.TerryTrials">
             <summary>
             This is your game class. This is an entity that is created serverside when
             the game starts, and is replicated to the client. 
@@ -13,24 +13,9 @@
             to use for spawned players.
             </summary>
         </member>
-        <member name="M:Sandbox.TerryTrials.ClientJoined(Sandbox.Client)">
+        <member name="M:TerryTrials.TerryTrials.ClientJoined(Sandbox.Client)">
             <summary>
             A client has joined the server. Make them a pawn to play with
-            </summary>
-        </member>
-        <member name="M:Sandbox.Pawn.Spawn">
-            <summary>
-            Called when the entity is first created 
-            </summary>
-        </member>
-        <member name="M:Sandbox.Pawn.Simulate(Sandbox.Client)">
-            <summary>
-            Called every tick, clientside and serverside.
-            </summary>
-        </member>
-        <member name="M:Sandbox.Pawn.FrameSimulate(Sandbox.Client)">
-            <summary>
-            Called every frame on the client
             </summary>
         </member>
     </members>
