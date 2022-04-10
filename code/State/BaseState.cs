@@ -6,7 +6,7 @@ namespace TerryTrials.State
 {
 	public abstract partial class BaseState : BaseNetworkable
 	{
-		[Net] public virtual RealTimeUntil StateTimer { get; set; } = 0f;
+		//[Net] public virtual RealTimeUntil StateTimer { get; set; } = 0f;
 
 		public void Start()
 		{
