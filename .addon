@@ -1,0 +1,23 @@
+{
+  "Title": "Trials of Terry",
+  "Type": "game",
+  "Org": "csdev",
+  "Ident": "terry_trials",
+  "Schema": 1,
+  "HasAssets": true,
+  "AssetsPath": "",
+  "ResourcePaths": null,
+  "HasCode": true,
+  "CodePath": "/code/",
+  "RootNamespace": "Sandbox",
+  "Metadata": {
+    "MapList": [
+      "tter_testmap"
+    ],
+    "MinPlayers": 1,
+    "MaxPlayers": 16,
+    "MapSelect": 3,
+    "RankType": 2,
+    "LeaderboardType": 2
+  }
+}
