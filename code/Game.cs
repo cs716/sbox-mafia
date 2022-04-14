@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using TerryTrials.Player;
+using TerryTrials.State;
 
 //
 // You don't need to put things in a namespace, but it doesn't hurt.
@@ -20,11 +21,20 @@ namespace TerryTrials
 	/// You can use this to create things like HUDs and declare which player class
 	/// to use for spawned players.
 	/// </summary>
-	public partial class TerryTrials : Sandbox.Game
+	partial class Game : Sandbox.Game
 	{
-		public TerryTrials()
+		public static Game Instance
 		{
+			get => Current as Game;
+		}
 
+		public Game()
+		{
+			if (IsServer)
+			{
+				Global.TickRate = 30;
+			}
+			GameState = new LobbyState();
 		}
 
 		/// <summary>
@@ -34,31 +44,21 @@ namespace TerryTrials
 		{
 			base.ClientJoined( client );
 
-			// Create a pawn for this client to play with
 			var player = new MafiaPlayer( client );
 			client.Pawn = player;
 
-			// Get all of the spawnpoints
-			var spawnpoints = Entity.All.OfType<SpawnPoint>();
-
-			foreach( var spawnPoint in spawnpoints )
-			{
-				bool available = !All.OfType<MafiaPlayer>().Where( player => player.SpawnPointId == spawnPoint.NetworkIdent ).Any();
-				if (available)
-				{
-					player.SpawnPointId = spawnPoint.NetworkIdent;
-					
-					player.Position = spawnPoint.Position;
-					player.Rotation = spawnPoint.Rotation;
-
-					player.Respawn();
-				}
-			}
+			GameState?.OnPlayerJoin( player );
 		}
 
 		public override void ClientDisconnect( Client cl, NetworkDisconnectionReason reason )
 		{
 			base.ClientDisconnect( cl, reason );
+		}
+
+		private void OnStateChange(BaseState lastState, BaseState newState)
+		{
+			lastState?.Finish();
+			newState?.Start();
 		}
 	}
 
