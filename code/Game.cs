@@ -47,6 +47,7 @@ namespace TerryTrials
 				if (available)
 				{
 					player.SpawnPointId = spawnPoint.NetworkIdent;
+					
 					player.Position = spawnPoint.Position;
 					player.Rotation = spawnPoint.Rotation;
 
