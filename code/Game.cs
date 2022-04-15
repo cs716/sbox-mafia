@@ -34,7 +34,7 @@ namespace TerryTrials
 			{
 				Global.TickRate = 30;
 			}
-			GameState = new LobbyState();
+			ChangeState( new IdleState() );
 		}
 
 		/// <summary>
@@ -48,6 +48,12 @@ namespace TerryTrials
 			client.Pawn = player;
 
 			GameState?.OnPlayerJoin( player );
+		}
+
+		public override void PostLevelLoaded()
+		{
+			ChangeState( new LobbyState() );
+			base.PostLevelLoaded();
 		}
 
 		public override void ClientDisconnect( Client cl, NetworkDisconnectionReason reason )
