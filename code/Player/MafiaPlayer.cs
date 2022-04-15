@@ -11,6 +11,8 @@ namespace TerryTrials.Player
 	{
 		[Net] public int SpawnPointId { get; set; }
 
+		public bool IsAlive { get; set; } = false;
+
 		public Clothing.Container Clothing = new();
 
 		public MafiaPlayer()
@@ -37,6 +39,8 @@ namespace TerryTrials.Player
 				child.EnableDrawing = true;
 
 			Clothing.DressEntity( this );
+
+			IsAlive = true;
 
 			base.Respawn();
 		}
