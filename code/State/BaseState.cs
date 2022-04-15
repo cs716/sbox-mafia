@@ -17,8 +17,8 @@ namespace TerryTrials.State
 			OnFinish();
 		}
 
-		protected virtual void OnStart() { }
-		protected virtual void OnFinish() { }
+		public virtual void OnStart() { }
+		public virtual void OnFinish() { }
 
 		public virtual void OnPlayerLeave() { }
 		public virtual void OnPlayerJoin(MafiaPlayer player) { }
