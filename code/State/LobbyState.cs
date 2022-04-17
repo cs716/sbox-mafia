@@ -1,45 +1,39 @@
 ﻿using Sandbox;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TerryTrials.Player;
-using TerryTrials.State;
 
-namespace TerryTrials.State
+namespace TerryTrials.State;
+public partial class LobbyState : BaseState
 {
-	public partial class LobbyState : BaseState
+
+	public override void OnStart()
 	{
+		base.OnStart();
+		// Find any existing players that joined during Idle and initialize them
 
-		public override void OnStart()
+		var players = Entity.All.OfType<MafiaPlayer>();
+		if ( players.Any() )
 		{
-			base.OnStart();
-			// Find any existing players that joined during Idle and initialize them
-
-			var players = Entity.All.OfType<MafiaPlayer>();
-			if (players.Any())
+			foreach ( var player in players.ToList() )
 			{
-				foreach (var player in players.ToList())
-				{
-					OnPlayerJoin( player );
-				}
+				OnPlayerJoin( player );
 			}
 		}
-		public override void OnPlayerJoin(MafiaPlayer player)
-		{
-			var spawnpoints = Entity.All.OfType<SpawnPoint>();
+	}
+	public override void OnPlayerJoin( MafiaPlayer player )
+	{
+		var spawnpoints = Entity.All.OfType<SpawnPoint>();
 
-			foreach ( var spawnPoint in spawnpoints.ToList() )
+		foreach ( var spawnPoint in spawnpoints.ToList() )
+		{
+			Vector3 potentialSpawn = spawnPoint.Position;
+			bool occupied = Entity.FindInSphere( potentialSpawn, 5 ).OfType<MafiaPlayer>().Where( p => p.IsAlive ).Any();
+			if ( !occupied )
 			{
-				Vector3 potentialSpawn = spawnPoint.Position;
-				bool occupied = Entity.FindInSphere( potentialSpawn, 5 ).OfType<MafiaPlayer>().Where( p => p.IsAlive ).Any();
-				if ( !occupied )
-				{
-					player.Respawn();
-					player.Position = potentialSpawn;
-					player.Rotation = spawnPoint.Rotation;
-				}
+				player.Respawn();
+				player.Position = potentialSpawn;
+				player.Rotation = spawnPoint.Rotation;
+				break;
 			}
 		}
 	}
