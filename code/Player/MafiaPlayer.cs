@@ -1,48 +1,48 @@
 ﻿using Sandbox;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TerryTrials.Teams;
 
-namespace TerryTrials.Player
+namespace TerryTrials.Player;
+public partial class MafiaPlayer : Sandbox.Player
 {
-	public partial class MafiaPlayer : Sandbox.Player
+	[Net] public bool IsAlive { get; private set; } = false;
+	public bool IsProtected { get; set; } = false;
+	public BaseTeam Team { get; set; }
+
+	public Clothing.Container Clothing = new();
+
+	public MafiaPlayer()
 	{
-		[Net] public int SpawnPointId { get; set; }
 
-		public bool IsAlive { get; set; } = false;
+	}
 
-		public Clothing.Container Clothing = new();
+	public MafiaPlayer( Client client ) : this()
+	{
+		Clothing.LoadFromClient( client );
+	}
 
-		public MafiaPlayer()
-		{
+	public override void OnKilled()
+	{
+		IsAlive = false;
+		base.OnKilled();
+	}
 
-		}
+	public override void Respawn()
+	{
+		CameraMode = new ThirdPersonCamera();
+		Animator = new StandardPlayerAnimator();
 
-		public MafiaPlayer(Client client) : this()
-		{
-			Clothing.LoadFromClient( client );
-		}
+		EnableAllCollisions = true;
+		EnableDrawing = true;
 
-		public override void Respawn()
-		{
-			CameraMode = new ThirdPersonCamera();
-			Animator = new StandardPlayerAnimator();
+		SetModel( "models/citizen/citizen.vmdl" );
 
-			EnableAllCollisions = true;
-			EnableDrawing = true;
+		foreach ( var child in Children )
+			child.EnableDrawing = true;
 
-			SetModel( "models/citizen/citizen.vmdl" );
+		Clothing.DressEntity( this );
 
-			foreach ( var child in Children )
-				child.EnableDrawing = true;
+		IsAlive = true;
 
-			Clothing.DressEntity( this );
-
-			IsAlive = true;
-
-			base.Respawn();
-		}
+		base.Respawn();
 	}
 }
