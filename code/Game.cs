@@ -4,6 +4,8 @@ using TerryTrials.Hud.World.Player;
 using TerryTrials.Player;
 using TerryTrials.State;
 
+using System.Linq;
+
 namespace TerryTrials;
 /// <summary>
 /// This is your game class. This is an entity that is created serverside when
@@ -28,7 +30,7 @@ partial class Game : Sandbox.Game
 			Global.TickRate = 30;
 			_ = new HudController();
 		}
-		ChangeState( new IdleState() );
+		ChangeState( new LobbyState() );
 		NameTagHandler = new();
 	}
 
@@ -47,8 +49,25 @@ partial class Game : Sandbox.Game
 
 	public override void PostLevelLoaded()
 	{
-		ChangeState( new LobbyState() );
 		base.PostLevelLoaded();
+	}
+
+	[ServerCmd(name: "transmitLocal")]
+	public static void TestTransmitLocal()
+	{
+		All.OfType<MafiaPlayer>().Where( p => p.IsAlive ).ToList().ForEach( player =>
+		{
+			player.Transmit = TransmitType.Owner;
+		} );
+	}
+
+	[ServerCmd( name: "transmitGlobal" )]
+	public static void TestTransmitGlobal()
+	{
+		All.OfType<MafiaPlayer>().ToList().ForEach( player =>
+		{
+			player.Transmit = TransmitType.Always;
+		} );
 	}
 
 	public override void ClientDisconnect( Client cl, NetworkDisconnectionReason reason )
