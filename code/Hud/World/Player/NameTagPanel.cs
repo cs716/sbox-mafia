@@ -21,7 +21,7 @@ public partial class NameTagPanel : WorldPanel
 
 	public override void Tick()
 	{
-		if ( !Player.IsValid() || Player is null || !Player.IsAlive )
+		if ( !Player.IsValid() || Player is null || !Player.IsAlive || Player.Transmit != TransmitType.Always)
 		{
 			Delete( true );
 			return;

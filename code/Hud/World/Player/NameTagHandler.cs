@@ -19,7 +19,7 @@ public partial class NameTagHandler
 	{
 		if (Host.IsClient)
 		{
-			foreach ( MafiaPlayer player in Entity.All.OfType<MafiaPlayer>().Where( p => p.IsAlive ) )
+			foreach ( MafiaPlayer player in Entity.All.OfType<MafiaPlayer>().Where( p => p.IsAlive && p.Transmit == TransmitType.Always ) )
 			{
 				if ( !NameTags.ContainsKey( player ) )
 				{
