@@ -1,0 +1,16 @@
+@import '/Hud/Globals.scss';
+
+NameTagPanel {
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.nametag {
+    font-size: 64px;
+    color: #FFF;
+}
+
+.statuslabel {
+    font-size:48px;
+}
