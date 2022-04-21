@@ -9,14 +9,14 @@
   "ResourcePaths": null,
   "HasCode": true,
   "CodePath": "/code/",
-  "RootNamespace": "Sandbox",
+  "RootNamespace": "TerryTrials",
   "Metadata": {
     "MapList": [
       "tter_testmap"
     ],
     "MinPlayers": 1,
     "MaxPlayers": 16,
-    "MapSelect": 3,
+    "MapSelect": 2,
     "RankType": 2,
     "LeaderboardType": 2
   }

@@ -5,7 +5,7 @@ namespace TerryTrials.Teams;
 public partial class MafiaTeam : BaseTeam
 {
 	[ServerVar("tt_mafia_player_ratio", Help = "Ratio of Town to Mafia players", Min = 0.4f, Max = 0.1f)]
-	public static double MafiaPlayerRatio { get; set; } = 0.25;
+	public static float MafiaPlayerRatio { get; set; } = 0.25f;
 	public override Alliance Alliance => Alliance.Mafia;
 	public override string SingularName => "Mafia";
 	public override string PluralName => "the Mafia";

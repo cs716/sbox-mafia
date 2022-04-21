@@ -1,10 +1,15 @@
 ﻿using Sandbox;
+using Sandbox.UI;
+using TerryTrials.Hud;
 using TerryTrials.Teams;
 
 namespace TerryTrials.Player;
 public partial class MafiaPlayer : Sandbox.Player
 {
 	[Net] public bool IsAlive { get; private set; } = false;
+	[Net] public bool IsReady { get; set; } = false;
+
+	public NameTagPanel NameTagPanel { get; set; }
 	public bool IsProtected { get; set; } = false;
 	public BaseTeam Team { get; set; }
 
@@ -12,7 +17,7 @@ public partial class MafiaPlayer : Sandbox.Player
 
 	public MafiaPlayer()
 	{
-
+		Transmit = TransmitType.Always;
 	}
 
 	public MafiaPlayer( Client client ) : this()
@@ -28,6 +33,7 @@ public partial class MafiaPlayer : Sandbox.Player
 
 	public override void Respawn()
 	{
+
 		CameraMode = new ThirdPersonCamera();
 		Animator = new StandardPlayerAnimator();
 

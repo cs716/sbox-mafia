@@ -1,4 +1,6 @@
 ﻿using Sandbox;
+using TerryTrials.Hud;
+using TerryTrials.Hud.World.Player;
 using TerryTrials.Player;
 using TerryTrials.State;
 
@@ -17,13 +19,17 @@ partial class Game : Sandbox.Game
 		get => Current as Game;
 	}
 
+	public NameTagHandler NameTagHandler;
+
 	public Game()
 	{
 		if ( IsServer )
 		{
 			Global.TickRate = 30;
+			_ = new HudController();
 		}
 		ChangeState( new IdleState() );
+		NameTagHandler = new();
 	}
 
 	/// <summary>
