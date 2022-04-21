@@ -9,6 +9,8 @@ public partial class MafiaPlayer : Sandbox.Player
 	[Net] public bool IsAlive { get; private set; } = false;
 	[Net] public bool IsReady { get; set; } = false;
 
+	public int HomePlateIdent { get; set; }
+
 	public NameTagPanel NameTagPanel { get; set; }
 	public bool IsProtected { get; set; } = false;
 	public BaseTeam Team { get; set; }
