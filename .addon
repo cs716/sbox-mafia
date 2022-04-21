@@ -11,12 +11,10 @@
   "CodePath": "/code/",
   "RootNamespace": "TerryTrials",
   "Metadata": {
-    "MapList": [
-      "tter_testmap"
-    ],
+    "MapList": [],
     "MinPlayers": 1,
     "MaxPlayers": 16,
-    "MapSelect": 2,
+    "MapSelect": 0,
     "RankType": 2,
     "LeaderboardType": 2
   }
