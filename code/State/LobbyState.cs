@@ -41,7 +41,7 @@ public partial class LobbyState : BaseState
 			}
 			else
 			{
-				LobbyCountdown = 15;
+				LobbyCountdown = 5;
 				LobbyCountdownStarted = true;
 			} 
 		} else if(LobbyCountdownStarted)
