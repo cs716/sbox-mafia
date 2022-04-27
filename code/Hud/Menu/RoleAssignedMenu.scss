@@ -1,0 +1,33 @@
+﻿RoleAssignedMenu {
+    z-index: 200;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+
+    .roletitle {
+        font-size: 48px;
+        color: #FFF;
+        font-family: atwriter;
+    }
+
+    .role {
+        font-size: 110px;
+        font-weight: bold;
+        font-family: TheyPerished;
+        margin-left: 20px;
+    }
+
+    .roledescription {
+        font-size: 48px;
+        font-family: atwriter;
+        color: #FFF;
+    }
+}
