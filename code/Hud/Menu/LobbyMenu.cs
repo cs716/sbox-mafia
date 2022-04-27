@@ -61,9 +61,9 @@ public partial class LobbyMenu : Panel
 	public void ProcessBuildInput( InputBuilder inputBuilder )
 	{
 		Assert.NotNull( inputBuilder );
-		if (!HasClass("hide") && ReadyStateLocked == false)
+		if ( !HasClass( "hide" ) && ReadyStateLocked == false )
 		{
-			if (inputBuilder.Pressed(InputButton.Jump))
+			if ( inputBuilder.Pressed( InputButton.Jump ) )
 			{
 				MafiaPlayer.ToggleReadyState( !IsReady );
 			}
